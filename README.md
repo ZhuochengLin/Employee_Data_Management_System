@@ -10,6 +10,8 @@ Tech Stack:
 * HTML, CSS, Bootstrap
 * Django
 
+![image.png](/redirect/s3?bucket=uploads&prefix=paste%2Fk9sw8fxtvq349t%2Feb6be903b1f63a00ea2f2b2e761bc8cdcf31f28785e03f1ea35c50e122c45c75%2Fimage.png)
+
 ## How to rebuild the project
 1. Set up MySQL database
     * Import the MySQL dump file, ```./lin_final_project.sql```
