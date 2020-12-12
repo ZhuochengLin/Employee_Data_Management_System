@@ -1,5 +1,15 @@
 # README
 
+This is the final project for my course, CS5200 Database Management. In this project, 
+an employee information management system is built using Django. It supports typical CRUD
+operations and offers comprehensive constraint check.
+
+Tech Stack:
+* MySQL
+* Python
+* HTML, CSS, Bootstrap
+* Django
+
 ## How to rebuild the project
 1. Set up MySQL database
     * Import the MySQL dump file, ```./lin_final_project.sql```
