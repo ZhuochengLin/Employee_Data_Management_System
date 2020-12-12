@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends 'navigation/outside_base.html' %}
+{% block base_block %}
+{% if not user.is_authenticated %}
+	{% include 'navigation/no_access.html' %}
+{% else %}
+	<div class="jumbotron bg-white">
+	<div class="alert alert-danger" role="alert">
+	  Sorry, as a guest user, you don't have access to this.
+	</div>
+</div>
+{% endif %}
+{% endblock %}

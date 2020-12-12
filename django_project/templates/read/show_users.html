@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends 'navigation/base.html' %}
+{% load my_filters %}
+{% block body_block %}
+	{% if not users %}
+		{% include 'navigation/not_found.html' %}
+	{% else %}
+		<div class="container pt-5">
+			<div class="card">
+				<div class="card-body">
+				<h5 class="card-title">System Users </h5>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+							  <th scope="col">#</th>
+							  <th scope="col">Username</th>
+							  <th scope="col">Access Level</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for s in users %}
+							<tr>
+							  <th scope="row">{{ forloop.counter }}</th>
+							  <td>{{ s.username }}</td>
+							  <td>{{ s.access_level }}</td>
+								<td><a href="{% url 'update-user-record' user_id=s.user_id %}" class="btn btn-primary">
+									Edit
+								</a></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

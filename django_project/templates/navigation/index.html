@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends 'navigation/outside_base.html' %}
+{% block base_block %}
+<div class="container">
+	<div class="card col-12 mt-5">
+		<div class="card-body">
+			<div class="jumbotron">
+				<h1 class="display-4">Welcome, Hard Worker!</h1>
+				<p class="lead">Behold, this is a DBMS for employee records management. If you're an administrator, feel free to explore the system, and manipulate the data as you wish.
+				If you're a guest, you only have access to read the data in the system.</p>
+				<hr class="my-4">
+				<p><em>Note: all the data stored in this DBMS are not real.</em></p>
+				{% if user.is_authenticated %}
+					<a class="btn btn-primary btn-lg" href="{% url 'read-all-employee' %}" role="button">Read Something</a>
+				{% else %}
+					<a class="btn btn-primary btn-lg" href="{% url 'user-login' %}" role="button">Login</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends 'navigation/base.html' %}
+{% load my_filters %}
+{% block body_block %}
+	{% if not employees %}
+		{% include 'navigation/not_found.html' %}
+	{% else %}
+		<div class="container pt-5">
+			<div class="card">
+				<div class="card-body">
+				<h5 class="card-title">Employees</h5>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+							  <th scope="col">ID</th>
+							  <th scope="col">Name</th>
+								<th scope="col">Job Title</th>
+								<th scope="col">Department</th>
+								<th scope="col">Salary</th>
+								<th scope="col">Gender</th>
+							  <th scope="col">Birth Date</th>
+							  <th scope="col">Hire Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for e in employees %}
+							<tr>
+							  <th scope="row">{{ e.employee_id }}</th>
+							  <td>{{ e.first_name }} {{ e.last_name }}</td>
+								<td>{% if e.title %}{{ e.title }}{% endif %}</td>
+								<td>{% if e.department %}{{ e.department }}{% endif %}</td>
+								<td>{% if e.salary %}{{ e.salary }}{% endif %}</td>
+								<td>{{ e.gender }}</td>
+							  <td>{{ e.birth_date }}</td>
+							  <td>{{ e.hire_date }}</td>
+							<td><a href="{% url 'delete-employee-record' employee_id=e.employee_id %}"
+							       class="btn btn-danger" onclick="return confirm('Are you sure?')">
+								Delete</a></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+
+					{% if messages %}
+						{% for m in messages %}
+							<small class="text-danger">{{ m }}</small>
+						{% endfor %}
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

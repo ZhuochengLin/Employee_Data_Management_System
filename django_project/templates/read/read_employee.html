@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'navigation/base.html' %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+	{% if not user.is_authenticated %}
+	{% include 'navigation/no_access.html' %}
+	{% else %}
+	<div class="d-flex justify-content-center pt-5">
+		<div class="card col-6">
+			<div class="card-body">
+				<h5 class="card-title">
+			        Search
+			    </h5>
+			    <h6 class="card-subtitle mb-2 text-muted">Please enter employee id or name to search</h6>
+					{% csrf_token %}
+					{% crispy forms%}
+
+					{% if forms.non_field_errors %}
+						<small class="text-danger">
+							{{ forms.non_field_errors | striptags }}
+						</small>
+					{% endif %}
+		    </div>
+		</div>
+	</div>
+	{% endif %}
+{% endblock %}

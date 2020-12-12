@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+{% extends 'navigation/base.html' %}
+{% load my_filters %}
+{% block body_block %}
+	{% if not assignment_history %}
+		{% include 'navigation/not_found.html' %}
+	{% else %}
+		<div class="container pt-5">
+			<div class="card">
+				<div class="card-body">
+				<h5 class="card-title">Assignment History </h5>
+				<h6 class="card-subtitle mb-2 text-muted">
+					Name: {{ employee.first_name | capfirst }} {{ employee.last_name | capfirst }}
+				</h6>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+							  <th scope="col">#</th>
+							  <th scope="col">Department</th>
+							  <th scope="col">Start Date</th>
+							  <th scope="col">End Date</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for s in assignment_history %}
+							<tr>
+							  <th scope="row">{{ forloop.counter }}</th>
+							  <td>{{ s.department_name }}</td>
+							  <td>{{ s.from_date }}</td>
+							  <td>{{ s.to_date }}</td>
+								<td><a href="{% url 'update-assignment-record' employee_id=employee.employee_id assignment_id=s.assignment_id %}" class="btn btn-primary">
+									Edit
+								</a></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<p><small><em>Note: "Jan. 1, 9999" means up to now</em></small></p>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

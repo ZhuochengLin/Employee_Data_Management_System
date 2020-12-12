@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+{% extends 'navigation/outside_base.html' %}
+{% block base_block %}
+{% if not user.is_authenticated %}
+	{% include 'navigation/no_access.html' %}
+{% else %}
+	{% block body_block %}
+	{% endblock %}
+{% endif %}
+{% endblock %}

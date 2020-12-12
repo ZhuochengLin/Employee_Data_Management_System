@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends 'navigation/base.html' %}
+{% load my_filters %}
+{% block body_block %}
+	{% if not orders %}
+		{% include 'navigation/not_found.html' %}
+	{% else %}
+		<div class="container pt-5">
+			<div class="card">
+				<div class="card-body">
+				<h5 class="card-title">Orders </h5>
+
+					<table class="table table-striped">
+						<thead>
+							<tr>
+							  <th scope="col">#</th>
+							  <th scope="col">Sale Staff</th>
+							  <th scope="col">Item Name</th>
+							  <th scope="col">Quantity</th>
+								<th scope="col">Unit Price</th>
+								<th scope="col">Status</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for s in orders %}
+							<tr>
+							  <th scope="row">{{ forloop.counter }}</th>
+							  <td>{{ s.first_name }} {{ s.last_name }}</td>
+							  <td>{{ s.item_name }}</td>
+							  <td>{{ s.quantity }}</td>
+								<td>{{ s.unit_price }}</td>
+								<td>{{ s.status }}</td>
+								<td><a href="{% url 'delete-order-record' order_id=s.order_id %}"
+								       class="btn btn-danger" onclick="return confirm('Are you sure?')">
+									Delete
+								</a></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+
+				{% if messages %}
+					{% for m in messages %}
+						<small class="text-danger">{{ m }}</small>
+					{% endfor %}
+				{% endif %}
+
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

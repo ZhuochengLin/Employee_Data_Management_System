@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+{% extends 'navigation/success.html' %}
+{% block message_block %}
+	<div class="alert alert-primary" role="alert">
+		Salary record created successfully!
+	</div>
+	<a href="{% url 'create-salary' %}" class="btn btn-primary">Create Another</a>
+{% endblock %}

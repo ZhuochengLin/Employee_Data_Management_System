@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'navigation/outside_base.html' %}
+{% load crispy_forms_tags %}
+{% block base_block %}
+
+<div class="d-flex justify-content-center pt-5">
+	<div class="card col-6 mt-5">
+		<div class="card-body">
+			{% if registered %}
+				<h5 class="card-title">
+			        Thank you for registering!
+			    </h5>
+			{% else %}
+				<h5 class="card-title">
+			        Login
+			    </h5>
+				<form method="POST">
+					{% crispy user %}
+					<input type="submit" class="btn btn-primary mr-3 col-2" value="Login">
+					<a href="{% url 'user-register' %}" class="btn btn-primary col-2">Register</a>
+				</form>
+
+				{% if messages %}
+					{% for m in messages %}
+						<small class="text-danger">{{ m }}</small>
+					{% endfor %}
+				{% endif %}
+
+				{% if user.errors %}
+					{% for key, value in user.errors.items %}
+						<small class="text-danger">{{ value | striptags }}</small>
+					{% endfor %}
+				{% endif %}
+
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}

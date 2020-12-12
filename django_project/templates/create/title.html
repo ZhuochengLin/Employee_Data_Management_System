@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends 'navigation/base.html' %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+	<div class="d-flex justify-content-center p-5">
+		<div class="card col-8">
+			<div class="card-body">
+			<h5 class="card-title">New Job Title</h5>
+				{% crispy new_title %}
+
+				{% if messages %}
+					{% for m in messages %}
+						<small class="text-danger">{{ m }}</small>
+					{% endfor %}
+				{% endif %}
+
+				{% if new_title.errors %}
+					{% for key, value in new_title.errors.items %}
+						<small class="text-danger">{{ value | striptags }}</small>
+					{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% extends 'navigation/base.html' %}
+{% load my_filters %}
+{% block body_block %}
+	{% if not employee %}
+		{% include 'navigation/not_found.html' %}
+	{% else %}
+		<div class="container pt-5">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">{{ employee.first_name }} {{ employee.last_name }}</h5>
+
+					<h6 class="card-subtitle mb-2 text-muted">Employee ID: {{ employee.employee_id }}</h6>
+
+					<dl class="row mb-0 mt-3">
+						<dt class="col-2">Gender: </dt>
+						<dd class="col-10">{{ employee.gender }}</dd>
+
+						<dt class="col-2">Birthday: </dt>
+						<dd class="col-10">{{ employee.birth_date }}</dd>
+
+						<dt class="col-2">Hire Date: </dt>
+						<dd class="col-10">{{ employee.hire_date }}</dd>
+					</dl>
+
+				</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">
+							<div class="row">
+							  <strong class="col-2">Department: </strong> <span class="col-10">
+								{% if employee.department %}
+								{{ employee.department }}
+								{% endif %}
+								</span>
+							</div>
+						</li>
+					  <li class="list-group-item">
+						  <div class="row">
+							  <strong class="col-2">Job Title: </strong> <span class="col-10">
+							  {% if employee.title %}
+							  {{ employee.title }}
+							  {% endif %}
+							  </span>
+						  </div>
+					  </li>
+						<li class="list-group-item">
+							<div class="row">
+								<strong class="col-2">Salary: </strong> <span class="col-10">
+								{% if employee.salary %}
+								{{ employee.salary }}
+								{% endif %}
+								</span>
+							</div>
+						</li>
+					</ul>
+					<div class="card-body">
+					<a href="{% url 'update-employee-record' employee_id=employee.employee_id %}" class="card-link btn btn-primary" role="button">
+						Edit Info
+					</a>
+					<a href="{% url 'read-salary' employee_id=employee.employee_id %}" class="card-link btn btn-info">
+						Salary History</a>
+					<a href="{% url 'read-title' employee_id=employee.employee_id %}" class="card-link btn btn-info">
+						Title History</a>
+					<a href="{% url 'read-assignment' employee_id=employee.employee_id %}" class="card-link btn btn-info">
+						Assignment History</a>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

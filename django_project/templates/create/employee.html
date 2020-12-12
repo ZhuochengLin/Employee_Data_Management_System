@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends 'navigation/base.html' %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+
+	<div class="d-flex justify-content-center p-5">
+		<div class="card col-8">
+			<div class="card-body">
+			<h5 class="card-title">New Employee</h5>
+				{% crispy new_employee %}
+				{% if new_employee.errors %}
+					<small class="text-danger">{{ new_employee.non_field_errors | striptags }}</small>
+				{% endif %}
+			</div>
+		</div>
+
+	</div>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends 'navigation/base.html' %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+	{% if not order %}
+		{% include 'navigation/not_found.html' %}
+	{% else %}
+		<div class="container pt-5">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Edit Order</h5>
+					{% crispy order %}
+
+					{% if messages %}
+						{% for m in messages %}
+							<small class="text-danger">{{ m }}</small>
+						{% endfor %}
+					{% endif %}
+
+					{% if order.errors %}
+						{% for key, value in order.errors.items %}
+						<small class="text-danger">
+							{{ value | striptags }}
+						</small>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

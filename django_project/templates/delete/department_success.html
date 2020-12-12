@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+{% extends 'navigation/success.html' %}
+{% block message_block %}
+	<div class="alert alert-primary" role="alert">
+		Department record deleted successfully!
+	</div>
+	<a href="{% url 'delete-department' %}" class="btn btn-primary">Delete Another</a>
+{% endblock %}

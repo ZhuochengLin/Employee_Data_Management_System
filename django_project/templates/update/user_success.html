@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+{% extends 'navigation/success.html' %}
+{% block message_block %}
+	<div class="alert alert-primary" role="alert">
+		User access level saved successfully!
+	</div>
+	<a href="{% url 'update-user' %}" class="btn btn-primary">Edit Another</a>
+{% endblock %}
